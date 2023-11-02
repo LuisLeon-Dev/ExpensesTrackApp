@@ -13,7 +13,8 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <AuthStackNavigator />
+      {/* <AuthStackNavigator /> */}
+      <BottomTabNavigator />
     </NavigationContainer>
   );
 }

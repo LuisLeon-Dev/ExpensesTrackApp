@@ -1,4 +1,5 @@
-import Card from "./Card/Card";
-import Modal from "./Modal/Modal";
+import ExpenseCard from "./Card/ExpenseCard";
+import ExpenseModal from "./ExpenseModal/ExpenseModal";
+import AddTotalModal from "./AddTotalModal/AddTotalModal";
 
-export { Card, Modal };
+export { ExpenseCard, ExpenseModal, AddTotalModal };
