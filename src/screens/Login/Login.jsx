@@ -16,7 +16,7 @@ const Login = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Pressable onPress={() => navigation.goBack()}>
-        <Feather size={24} name="x" style={styles.closeButton} />
+        <Feather size={24} name="arrow-left" style={styles.closeButton} />
       </Pressable>
       <Image source={ilustration} style={styles.image} />
       <Text style={styles.text}>Welcome Back!</Text>

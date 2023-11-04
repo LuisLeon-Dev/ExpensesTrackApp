@@ -2,25 +2,28 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  Button,
   FlatList,
-  StyleSheet,
   Pressable,
+  Image,
+  SafeAreaView,
 } from "react-native";
 import { ExpenseModal, ExpenseCard, AddTotalModal } from "../../components";
+import styles from "./Home.styles.js";
+import Feather from "@expo/vector-icons/Feather";
+import ilustration from "../../assets/images/ilustration3.png";
 
 const HomeScreen = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isAddAmountModalVisible, setAddAmountModalVisible] = useState(false);
   const [expenseData, setExpenseData] = useState([]);
-  const [isAddTotalModalVisible, setAddTotalModalVisible] = useState(false);
-  const [totalAmount, setTotalAmount] = useState(0.0);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   const navigateToDetail = (amount, category, date) => {
     navigation.navigate("Details", { amount, category, date });
   };
 
-  const openAddTotalModal = () => {
-    setAddTotalModalVisible(true);
+  const toggleAddTotalModal = () => {
+    setAddAmountModalVisible(!isAddAmountModalVisible);
   };
 
   const toggleModal = () => {
@@ -32,18 +35,24 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Button title="Agregar Gasto" onPress={toggleModal} />
-      <Button title="Agregar Monto Total" onPress={openAddTotalModal} />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.amountContainer}>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Available Balance</Text>
+          <Text style={styles.totalAmount}>${totalAmount.toFixed(2)}</Text>
+        </View>
+        <Pressable onPress={toggleAddTotalModal} style={styles.addBudgetButton}>
+          <Feather size={24} name="plus" />
+        </Pressable>
+        <Image source={ilustration} style={styles.image} />
+      </View>
 
-      <Text style={styles.totalText}>
-        Monto Total: {totalAmount.toFixed(2)}
-      </Text>
       <AddTotalModal
-        visible={isAddTotalModalVisible}
+        visible={isAddAmountModalVisible}
         onAddTotal={setTotalAmount}
-        onClose={() => setAddTotalModalVisible(false)}
+        onClose={toggleAddTotalModal}
       />
+
       <ExpenseModal
         visible={isModalVisible}
         onSave={saveExpense}
@@ -51,6 +60,10 @@ const HomeScreen = ({ navigation }) => {
         totalAmount={totalAmount}
         setTotalAmount={setTotalAmount}
       />
+
+      <View style={styles.subtitleContainer}>
+        <Text style={styles.subtitle}>My Expenses</Text>
+      </View>
 
       <FlatList
         data={expenseData}
@@ -65,21 +78,13 @@ const HomeScreen = ({ navigation }) => {
           </Pressable>
         )}
       />
-    </View>
+
+      <Pressable onPress={toggleModal} style={styles.addSpendButton}>
+        <Feather size={24} name="plus" />
+        <View style={styles.circle} />
+      </Pressable>
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  listItem: {
-    padding: 8,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginVertical: 4,
-  },
-});
 
 export default HomeScreen;

@@ -1,7 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Feather from "@expo/vector-icons/Feather";
-import { StyleSheet } from "react-native";
-import { colors } from "../constants/color";
 import StackNavigator from "./StackNavigator";
 import ProfileNavigator from "./ProfileNavigator";
 
@@ -23,7 +21,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ focused }) => (
             <Feather
               size={24}
-              color={focused ? "#fff" : "#000"}
+              color={focused ? "#000" : "#B3B3B3"}
               name="clipboard"
             />
           ),
@@ -34,7 +32,11 @@ function BottomTabNavigator() {
         component={ProfileNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Feather size={24} color={focused ? "#fff" : "#000"} name="user" />
+            <Feather
+              size={24}
+              color={focused ? "#000" : "#B3B3B3"}
+              name="user"
+            />
           ),
         }}
       />
@@ -43,9 +45,3 @@ function BottomTabNavigator() {
 }
 
 export default BottomTabNavigator;
-
-const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: colors.color_background,
-  },
-});

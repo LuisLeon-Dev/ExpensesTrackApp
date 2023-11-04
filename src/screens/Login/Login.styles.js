@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
   closeButton: {
     position: "absolute",
     top: 10,
-    right: 20,
+    left: 20,
   },
   image: {
     marginTop: 60,

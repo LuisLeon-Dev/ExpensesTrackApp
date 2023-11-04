@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { View, Modal, Text, TextInput, Button, StyleSheet } from "react-native";
+import Feather from "@expo/vector-icons/Feather";
+import {
+  View,
+  Modal,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  Pressable,
+} from "react-native";
 
 const ExpenseModal = ({
   visible,
@@ -26,6 +35,9 @@ const ExpenseModal = ({
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.modalContainer}>
+        <Pressable onPress={onClose}>
+          <Feather size={24} name="x" />
+        </Pressable>
         <Text>Ingresa la cantidad gastada:</Text>
         <TextInput
           value={amount}
