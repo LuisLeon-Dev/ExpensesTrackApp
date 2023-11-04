@@ -34,6 +34,15 @@ const HomeScreen = ({ navigation }) => {
     setExpenseData([...expenseData, expense]);
   };
 
+  const dateOptions = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString("en-US", dateOptions);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.amountContainer}>
@@ -74,7 +83,11 @@ const HomeScreen = ({ navigation }) => {
               navigateToDetail(item.amount, item.category, item.date)
             }
           >
-            <ExpenseCard amount={item.amount} category={item.category} />
+            <ExpenseCard
+              amount={item.amount}
+              category={item.category}
+              formattedDate={formattedDate}
+            />
           </Pressable>
         )}
       />

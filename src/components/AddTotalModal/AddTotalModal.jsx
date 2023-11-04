@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 const AddTotalModal = ({ visible, onAddTotal, onClose }) => {
-  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0.0);
 
   const addTotal = () => {
     if (totalAmount) {
