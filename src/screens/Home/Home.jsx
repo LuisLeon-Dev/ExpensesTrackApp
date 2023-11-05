@@ -7,6 +7,9 @@ import {
   Image,
   SafeAreaView,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { setTotalAmount } from "../../features/totalAmountSlice/totalAmountSlice";
+import { addTransaction } from "../../features/transactionsSlice/transactionsSlice";
 import { ExpenseModal, ExpenseCard, AddTotalModal } from "../../components";
 import styles from "./Home.styles.js";
 import Feather from "@expo/vector-icons/Feather";
@@ -15,8 +18,11 @@ import ilustration from "../../assets/images/ilustration3.png";
 const HomeScreen = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isAddAmountModalVisible, setAddAmountModalVisible] = useState(false);
-  const [expenseData, setExpenseData] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
+
+  //redux
+  const dispatch = useDispatch();
+  const totalAmount = useSelector((state) => state.totalAmount);
+  const expenseData = useSelector((state) => state.transactions);
 
   const navigateToDetail = (amount, category, date) => {
     navigation.navigate("Details", { amount, category, date });
@@ -31,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const saveExpense = (expense) => {
-    setExpenseData([...expenseData, expense]);
+    dispatch(addTransaction(expense));
   };
 
   const dateOptions = {
@@ -58,7 +64,7 @@ const HomeScreen = ({ navigation }) => {
 
       <AddTotalModal
         visible={isAddAmountModalVisible}
-        onAddTotal={setTotalAmount}
+        onAddTotal={(newTotal) => dispatch(setTotalAmount(newTotal))}
         onClose={toggleAddTotalModal}
       />
 
@@ -67,7 +73,7 @@ const HomeScreen = ({ navigation }) => {
         onSave={saveExpense}
         onClose={toggleModal}
         totalAmount={totalAmount}
-        setTotalAmount={setTotalAmount}
+        setTotalAmount={(newTotal) => dispatch(setTotalAmount(newTotal))}
       />
 
       <View style={styles.subtitleContainer}>
