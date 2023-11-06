@@ -29,7 +29,7 @@ const SingUpHome = ({ navigation }) => {
           style={styles.singUpButton}
           onPress={() => navigation.navigate("singup")}
         >
-          <Text>SingUp</Text>
+          <Text>SignUp</Text>
         </Pressable>
       </View>
     </View>

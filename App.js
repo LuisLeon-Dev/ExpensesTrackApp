@@ -1,8 +1,7 @@
 import fonts from "./src/global/fonts";
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
-import BottomTabNavigator from "./src/navigation/BottomTabNavigator";
-import AuthStackNavigator from "./src/navigation/AuthStackNavigator";
+import MainNavigator from "./src/navigation/MainNavigator";
 
 //redux Toolkit
 import { Provider } from "react-redux";
@@ -18,8 +17,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        {/* <AuthStackNavigator /> */}
-        <BottomTabNavigator />
+        <MainNavigator />
       </NavigationContainer>
     </Provider>
   );

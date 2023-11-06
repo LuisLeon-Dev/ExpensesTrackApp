@@ -7,12 +7,30 @@ import {
   TextInput,
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
-import React from "react";
+import React, { useState } from "react";
+import { useLoginMutation } from "../../services/authApi";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/Auth/AuthSlice";
 import styles from "./Login.styles";
 
 import ilustration from "../../assets/images/ilustration2.png";
 
 const Login = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [triggerLogin, result] = useLoginMutation();
+  const dispatch = useDispatch();
+
+  const onSubmit = () => {
+    triggerLogin({
+      email,
+      password,
+    });
+    if (result.isSuccess) {
+      dispatch(setUser(result));
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Pressable onPress={() => navigation.goBack()}>
@@ -23,6 +41,8 @@ const Login = ({ navigation }) => {
 
       <View style={styles.inputContainer}>
         <TextInput
+          value={email}
+          onChangeText={setEmail}
           style={styles.input}
           placeholder="Email Address"
           placeholderTextColor="#353A48"
@@ -32,6 +52,8 @@ const Login = ({ navigation }) => {
 
       <View style={styles.inputContainer}>
         <TextInput
+          value={password}
+          onChangeText={setPassword}
           style={styles.input}
           placeholder="Password"
           placeholderTextColor="#353A48"
@@ -40,7 +62,7 @@ const Login = ({ navigation }) => {
         <Feather name="lock" size={24} style={styles.icon} />
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={onSubmit}>
           <Text style={styles.buttonText}>Login</Text>
         </Pressable>
       </View>

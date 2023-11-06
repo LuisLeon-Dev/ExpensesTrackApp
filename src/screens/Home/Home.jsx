@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalAmount } from "../../features/totalAmountSlice/totalAmountSlice";
 import { addTransaction } from "../../features/transactionsSlice/transactionsSlice";
+
 import { ExpenseModal, ExpenseCard, AddTotalModal } from "../../components";
 import styles from "./Home.styles.js";
 import Feather from "@expo/vector-icons/Feather";
