@@ -15,7 +15,24 @@ export const api = createApi({
         body: expenseData,
       }),
     }),
+    getProfileImage: builder.query({
+      query: (localId) => `profileImages/${localId}.json`,
+    }),
+    postProfileImage: builder.mutation({
+      query: ({ image, localId }) => ({
+        url: `profileImages/${localId}.json`,
+        method: "PUT",
+        body: {
+          image,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetExpensesQuery, useCreateExpenseMutation } = api;
+export const {
+  useGetExpensesQuery,
+  useCreateExpenseMutation,
+  useGetProfileImageQuery,
+  usePostProfileImageMutation,
+} = api;

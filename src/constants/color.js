@@ -11,4 +11,5 @@ export const colors = {
   WhiteDarker: "#FFFFFFB2",
   Yellow: "#FFC727",
   DarkGrey: "#1A202C",
+  red: "#ff5232",
 };

@@ -24,9 +24,8 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 1,
-    marginRight: 40,
-    marginLeft: 40,
-    marginBottom: 40,
+    marginHorizontal: 40,
+    marginBottom: 20,
     paddingBottom: 5,
   },
   input: {

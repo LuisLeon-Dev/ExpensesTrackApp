@@ -5,7 +5,14 @@ const Stack = createNativeStackNavigator();
 
 function ProfileNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator
+      initialRouteName="Profile"
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: styles.tabBar,
+      }}
+    >
       <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
