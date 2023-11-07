@@ -5,7 +5,8 @@ import Feather from "@expo/vector-icons/Feather";
 import styles from "./Profile.styles";
 import ilustration from "../../assets/images/User.png";
 import { useDispatch, useSelector } from "react-redux";
-import setCameraImage from "../../features/Auth/AuthSlice";
+import { setCameraImage } from "../../features/Auth/AuthSlice";
+import { clearUser } from "../../features/Auth/AuthSlice";
 import { usePostProfileImageMutation } from "../../services/api";
 
 const Profile = () => {
@@ -46,6 +47,11 @@ const Profile = () => {
     console.log(result);
   };
 
+  const logOut = () => {
+    dispatch(clearUser()); // Despacha la acción clearUser para cerrar la sesión
+    // Aquí puedes agregar lógica adicional, como redireccionar a la pantalla de inicio de sesión, si es necesario.
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {image ? (
@@ -61,13 +67,17 @@ const Profile = () => {
       )}
 
       <Pressable style={styles.cameraButton} onPress={pickImage}>
-        <Text style={styles.ButtonText}>Take a Photo</Text>
+        <Text style={styles.ButtonText}>
+          Take a Photo <Feather name="camera" size={16} />
+        </Text>
       </Pressable>
       <Pressable style={styles.cameraButton} onPress={confirmImage}>
-        <Text style={styles.ButtonText}>Confirm</Text>
+        <Text style={styles.ButtonText}>
+          Confirm <Feather name="arrow-up-circle" size={16} />
+        </Text>
       </Pressable>
 
-      <Pressable style={styles.logoutButton}>
+      <Pressable style={styles.logoutButton} onPress={logOut}>
         <Text style={styles.ButtonText}>
           LogOut <Feather size={16} name="log-out" />
         </Text>

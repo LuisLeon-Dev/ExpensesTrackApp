@@ -2,17 +2,17 @@
 import React, { useState } from "react";
 import Feather from "@expo/vector-icons/Feather";
 import {
-  View,
+  SafeAreaView,
   Modal,
   Text,
   TextInput,
-  Button,
-  StyleSheet,
   Pressable,
+  View,
 } from "react-native";
+import styles from "./addTotalModel.style";
 
 const AddTotalModal = ({ visible, onAddTotal, onClose }) => {
-  const [totalAmount, setTotalAmount] = useState(0.0);
+  const [totalAmount, setTotalAmount] = useState("");
 
   const addTotal = () => {
     if (totalAmount) {
@@ -24,28 +24,26 @@ const AddTotalModal = ({ visible, onAddTotal, onClose }) => {
 
   return (
     <Modal visible={visible} animationType="slide">
-      <View style={styles.modalContainer}>
-        <Pressable onPress={onClose}>
+      <SafeAreaView style={styles.modalContainer}>
+        <Pressable onPress={onClose} style={styles.closeButton}>
           <Feather size={24} name="x" />
         </Pressable>
-        <Text>Ingresa el monto total:</Text>
-        <TextInput
-          value={totalAmount.toString()}
-          onChangeText={(text) => setTotalAmount(text)}
-          placeholder="Monto total"
-        />
-        <Button title="Agregar" onPress={addTotal} />
-      </View>
+        <View style={styles.inputContainer}>
+          <Feather name="dollar-sign" size={16} style={styles.icon} />
+          <TextInput
+            value={totalAmount.toString()}
+            onChangeText={(text) => setTotalAmount(text)}
+            placeholder="Set your new budget"
+            style={styles.input}
+          />
+        </View>
+
+        <Pressable onPress={addTotal} style={styles.button}>
+          <Text style={styles.buttonText}>Add Budget</Text>
+        </Pressable>
+      </SafeAreaView>
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 16,
-  },
-});
 
 export default AddTotalModal;

@@ -32,6 +32,7 @@ export default styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
   },
+
   logoutButton: {
     position: "absolute",
     bottom: 20,

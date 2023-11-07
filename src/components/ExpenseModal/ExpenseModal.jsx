@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Pressable,
 } from "react-native";
+import styles from "./ExpenseModel.styles";
 
 const ExpenseModal = ({
   visible,
@@ -35,34 +36,36 @@ const ExpenseModal = ({
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.modalContainer}>
-        <Pressable onPress={onClose}>
+        <Pressable onPress={onClose} style={styles.closeButton}>
           <Feather size={24} name="x" />
         </Pressable>
-        <Text>Ingresa la cantidad gastada:</Text>
-        <TextInput
-          value={amount}
-          onChangeText={(text) => setAmount(text)}
-          placeholder="Cantidad"
-        />
-        <Text>Ingresa la categoría:</Text>
-        <TextInput
-          value={category}
-          onChangeText={(text) => setCategory(text)}
-          placeholder="Categoría"
-        />
 
-        <Button title="Guardar" onPress={saveExpense} />
+        <View style={styles.inputContainer}>
+          <Feather name="credit-card" size={16} style={styles.icon} />
+          <TextInput
+            value={category}
+            onChangeText={(text) => setCategory(text)}
+            placeholder="What did you spend?"
+            style={styles.input}
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Feather name="dollar-sign" size={16} style={styles.icon} />
+          <TextInput
+            value={amount}
+            onChangeText={(text) => setAmount(text)}
+            placeholder="Set your new expense"
+            style={styles.input}
+          />
+        </View>
+
+        <Pressable onPress={saveExpense} style={styles.button}>
+          <Text style={styles.buttonText}>Add Expense</Text>
+        </Pressable>
       </View>
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 16,
-  },
-});
 
 export default ExpenseModal;
