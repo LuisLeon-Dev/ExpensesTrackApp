@@ -35,11 +35,3 @@ Inicia la aplicación:
 - expo start
 - Escanea el código QR con la aplicación Expo Go en tu dispositivo móvil o utiliza un emulador para probar la aplicación.
 
-
-Contribución
-Si deseas contribuir a este proyecto, ¡serás bienvenido! Puedes abrir un problema o enviar una solicitud de extracción para proponer cambios.
-
-
-Esperamos que esta aplicación de control de gastos te sea útil. Si tienes alguna pregunta o problema, no dudes en contactarnos.
-
-¡Gracias por utilizar nuestra aplicación!
